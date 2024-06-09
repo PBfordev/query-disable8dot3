@@ -1,0 +1,26 @@
+name: query-disable8dot3
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Query value of NtfsDisable8dot3NameCreation
+        shell: pwsh
+        run: .\query-disable8dot3.bat
